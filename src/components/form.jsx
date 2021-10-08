@@ -5,8 +5,11 @@ const Formulario = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-        console.log(data);
-        console.log("A renda per capita é de " + data.renda / (parseInt(data.dependentes) + 1));
+        
+        fetch(`http://localhost:3001/?nome=${data.nome}&cep=${data.cep}&renda=${data.renda}&dependentes=${data.dependentes}`)
+            .then(response => response.json())
+            .then(console.log)
+            .catch(error => console.error);
     }
 
     return (
