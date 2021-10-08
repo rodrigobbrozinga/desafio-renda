@@ -1,6 +1,15 @@
+import React, {useState} from 'react';
 import { Form, Button, Card } from "react-bootstrap";
+import RetornaDados from './resposta';
 
 const Formulario = () => {
+    const [events, setEvents] = useState([]);
+
+    const convertToArray = (obj) => {
+        const arr = [obj];
+        return arr;
+    }
+
     const submitHandler = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -8,14 +17,16 @@ const Formulario = () => {
         
         fetch(`http://localhost:3001/?nome=${data.nome}&cep=${data.cep}&renda=${data.renda}&dependentes=${data.dependentes}`)
             .then(response => response.json())
-            .then(console.log)
+            .then(data => {
+                const array = convertToArray(data);
+                setEvents(array);
+            })
             .catch(error => console.error);
     }
 
     return (
         <>
             <Card border="secondary" bg="light" className="w-50 m-auto mt-5">
-                <Card.Header>Cálculo de renda per capita</Card.Header>
                 <Card.Body>
                     <Card.Title className="text-center">Insira os dados a seguir para calcular a renda per capita da sua família</Card.Title>
                     <Card.Text>
@@ -44,7 +55,7 @@ const Formulario = () => {
                     </Card.Text>                    
                 </Card.Body>
             </Card>
-
+            <RetornaDados events={events}/>
 
         </>
     )
