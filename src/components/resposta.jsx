@@ -1,5 +1,6 @@
 import React from "react";
 import { Card} from "react-bootstrap"
+import "../styles/resposta.css"
 
 function RetornaDados({ events }) {
     if (!events || events.length === 0) {
@@ -12,7 +13,17 @@ function RetornaDados({ events }) {
                 <h5>Nome do titular</h5>
                 <p>Nome do fulano</p>
                 <h5>Endereço</h5>
-                <p>Endereço completo</p> 
+                <ul className="list-group">
+                    {events.map(item => 
+                    <li className="list-group-item" key={item.nome}>
+                        <span>CEP: {item.cep}</span>                        
+                        <span>Logradouro: {item.logradouro}</span>
+                        <span>Bairro: {item.bairro}</span>
+                        <span>Cidade: {item.localidade}</span>
+                        <span>UF: {item.uf}</span>
+                    </li>
+                    )}    
+                </ul> 
                 <h5>Valor da renda per capita</h5>
                 <p>Valor da renda</p>                 
             </Card.Body>
