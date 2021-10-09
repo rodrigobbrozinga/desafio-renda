@@ -19,7 +19,6 @@ const Formulario = () => {
             .then(response => response.json())
             .then(data => {
                 const array = convertToArray(data);
-                console.log(array);
                 setEvents(array);
             })
             .catch(error => console.error);
