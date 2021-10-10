@@ -29,30 +29,31 @@ const Formulario = () => {
             <Card border="secondary" bg="light" className="w-50 m-auto mt-5">
                 <Card.Body>
                     <Card.Title className="text-center">Insira os dados a seguir para calcular a renda per capita da sua família</Card.Title>
-                    <Card.Text>
+                    <div>
                         <Form onSubmit={submitHandler}>                
                             <Form.Group className="mb-3" controlId="nome">
                                 <Form.Label>Nome (Opcional)</Form.Label>                                
-                                <input type="text" name="nome" className="form-control" />
+                                <input type="text" name="nome" className="form-control" placeholder="Insira o nome do titular" />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="CEP">
                                 <Form.Label>CEP</Form.Label>
-                                <input type="text" name="cep" placeholder="Insira o cep" className="form-control" />
+                                <input type="text" name="cep" placeholder="Insira o cep" className="form-control" required />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="renda">
                                 <Form.Label>Renda Mensal</Form.Label>
-                                <input type="text" name="renda" placeholder="Insira a renda mensal" className="form-control" />
+                                <input type="number" name="renda" placeholder="Insira a renda mensal" className="form-control"
+                                 step="0.01" min="0.01" required />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="dependentes">
                                 <Form.Label>Número de dependentes</Form.Label>
-                                <input type="text" name="dependentes" placeholder="Insira o número de dependentes" className="form-control" />
+                                <input type="text" name="dependentes" placeholder="Insira o número de dependentes" className="form-control" required />
                             </Form.Group>
                             <Button variant="primary" type="submit">Calcular</Button>
                         </Form>
-                    </Card.Text>                    
+                    </div>                    
                 </Card.Body>
             </Card>
             <RetornaDados events={events}/>

@@ -26,7 +26,8 @@ function RetornaDados({ events }) {
                     )}
                 </ul>
                 <h5>Valor da renda per capita</h5>
-                <p className="list-group-item">{events.map(item => item.rendaPerCapita)}</p>
+                <p className="list-group-item">{events.map(item => 
+                    item.rendaPerCapita.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}))}</p>
             </Card.Body>
         </Card>
     )
